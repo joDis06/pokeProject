@@ -4,18 +4,15 @@ from django.db import models
 class Types(models.Model):
     name = models.CharField(max_length=50)
     color = models.CharField(max_length=6, default="ffffff")
-    
-class Stats(models.Model):
+
+class Pokemon(models.Model):
+    name = models.CharField(max_length=50)
+    generation = models.SmallIntegerField()
     hp = models.SmallIntegerField()
     atk = models.SmallIntegerField()
     dfn = models.SmallIntegerField()
     spatk = models.SmallIntegerField()
     spdef = models.SmallIntegerField()
     spd = models.SmallIntegerField()
-
-class Pokemon(models.Model):
-    name = models.CharField(max_length=50)
-    generation = models.SmallIntegerField()
     types = models.ManyToManyField(Types)
-    stats = models.ManyToManyField(Stats)
 

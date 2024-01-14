@@ -36,5 +36,14 @@ def getApiData(pokemon):
 def pokedexView(request):
     print("Hey!")
     getApiData('ditto')
+
+    # put the context in the return as data for all pokemon
+    # so we are able to retrieve it on the other end in
+    # the template and make a for loop / automated list
+    # of the info
+
     return render(request, 'pokedex/pokedex.html')
+
+
+# make detail view
 

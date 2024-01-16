@@ -13,7 +13,7 @@ import requests, json
 # Create your views here.
 
 def getApiData(pokemon):
-    pokeListUrl = 'https://pokeapi.co/api/v2/pokemon/'
+    pokeListUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1302'
     pokeListResponse = requests.get(pokeListUrl)
     pokeListData = pokeListResponse.json()
     # print(pokeListData.get("results"))
@@ -27,7 +27,7 @@ def getApiData(pokemon):
         #print(pokeStats)
         pokeInstance = Pokemon.objects.create(
                                                name=pokeStatsData.get('name'), 
-                                               generation = 1,
+                                               # generation = 1,
                                                hp=pokeStats[0].get('base_stat'), 
                                                atk=pokeStats[1].get('base_stat'),
                                                dfn=pokeStats[2].get('base_stat'),
@@ -35,13 +35,25 @@ def getApiData(pokemon):
                                                spdef=pokeStats[4].get('base_stat'),
                                                spd=pokeStats[5].get('base_stat'),
 
-                                               
                                              )
+        #pokeInstance.save()
+        #print(pokeInstance.hp)
     return JsonResponse(pokeListData)
 
+def populateTypes():
+    pokeTypeUrl = 'https://pokeapi.co/api/v2/type'
+    pokeTypeResponse = requests.get(pokeTypeUrl)
+    pokeTypeData = pokeTypeResponse.json()
+    for i in pokeTypeData.get('results'):
+        pokeInstance = Types.objects.create(name=i.get('name'))
+        pokeInstance.save()
+        #print(pokeInstance.name)
+               
 def pokedexView(request):
     print("Hey!")
+    populateTypes()
     getApiData('bulbasaur')
+    
 
     # put the context in the return as data for all pokemon
     # so we are able to retrieve it on the other end in

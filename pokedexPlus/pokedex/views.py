@@ -1,4 +1,3 @@
-import requests
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import ListView
@@ -9,18 +8,23 @@ from django.contrib import messages
 
 from .models import Pokemon, Types
 
+import requests, json
+
 # Create your views here.
 
 def getApiData(pokemon):
     pokeListUrl = 'https://pokeapi.co/api/v2/pokemon/'
     pokeListResponse = requests.get(pokeListUrl)
     pokeListData = pokeListResponse.json()
-    print(pokeListData.get("results"))
+    # print(pokeListData.get("results"))
     for i in pokeListData.get("results"):
-        pokeStatsUrl = 'https://pokeapi.co/api/v2/pokemon/'+i.get("name")
+        pokeStatsUrl = i.get('url')
+        #print(pokeStatsUrl)
         pokeStatsResponse = requests.get(pokeStatsUrl)
         pokeStatsData = pokeStatsResponse.json()
+        #print(pokeStatsData)
         pokeStats = pokeStatsData.get('stats')
+        #print(pokeStats)
         pokeInstance = Pokemon.objects.create(
                                                name=pokeStatsData.get('name'), 
                                                generation = 1,
@@ -30,12 +34,14 @@ def getApiData(pokemon):
                                                spatk=pokeStats[3].get('base_stat'),
                                                spdef=pokeStats[4].get('base_stat'),
                                                spd=pokeStats[5].get('base_stat'),
+
+                                               
                                              )
     return JsonResponse(pokeListData)
 
 def pokedexView(request):
     print("Hey!")
-    getApiData('ditto')
+    getApiData('bulbasaur')
 
     # put the context in the return as data for all pokemon
     # so we are able to retrieve it on the other end in
@@ -47,3 +53,11 @@ def pokedexView(request):
 
 # make detail view
 
+def pokeDetailView(request):
+    print("Hi!")
+
+    # have a button on pokedexview template that gives the id for the pokemon,
+    # then get data with https://pokeapi.co/api/v2/pokemon/[ID]
+    # put data into table thru context
+
+    return render(request, 'pokedex/pokeDetail.html')

@@ -1,0 +1,5 @@
+1/08/24: Started work on design doc
+1/09/24: Did database diagrams and website mockup
+1/10/24: Started work on project, set up environment and database with required packages. Polished database drawing using draw.io
+1/11/24: Finished models, polished website mockup.
+1/16/24: Finished API, database work.

@@ -35,7 +35,7 @@ def populatePokemon():
                                                    spatk=pokeStats[3].get('base_stat'),
                                                    spdef=pokeStats[4].get('base_stat'),
                                                    spd=pokeStats[5].get('base_stat'),
-
+                                                   image=pokeStatsData.get('sprites').get('other').get('home').get('front_default')
                                                  )
             for i in pokeStatsData.get('types'):
                 pokeType = Types.objects.filter(name__iexact = i.get("type").get("name"))
@@ -53,20 +53,23 @@ def populateTypes():
             pokeInstance = Types.objects.create(name=i.get('name'))
             pokeInstance.save()
             print(pokeInstance.name)
+            
+            
                
 def pokedexView(request):
-    if not Types.objects.all():
-        populateTypes()
-    if not Pokemon.objects.all():
-        populatePokemon()
+    # if not Types.objects.all():
+    populateTypes()
+    # if not Pokemon.objects.all():
+    populatePokemon()
     
+    pokemon = Pokemon.objects.all()
 
     # put the context in the return as data for all pokemon
     # so we are able to retrieve it on the other end in
     # the template and make a for loop / automated list
     # of the info
 
-    return render(request, 'pokedex/pokedex.html')
+    return render(request, 'pokedex/pokedex.html', context={"pokemon": pokemon})
 
 
 # make detail view

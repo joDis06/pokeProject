@@ -14,43 +14,45 @@ import requests, json
 
 def populatePokemon():
     pokeListUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1302'
-    pokeListResponse = requests.get(pokeListUrl)
-    pokeListData = pokeListResponse.json()
-    # print(pokeListData.get("results"))
-    for i in pokeListData.get("results"):
-        pokeStatsUrl = i.get('url')
-        #print(pokeStatsUrl)
-        pokeStatsResponse = requests.get(pokeStatsUrl)
-        pokeStatsData = pokeStatsResponse.json()
-        #print(pokeStatsData)
-        pokeStats = pokeStatsData.get('stats')
-        #print(pokeStats)
-        pokeInstance = Pokemon.objects.create(
-                                               name=pokeStatsData.get('name'), 
-                                               # generation = 1,
-                                               hp=pokeStats[0].get('base_stat'), 
-                                               atk=pokeStats[1].get('base_stat'),
-                                               dfn=pokeStats[2].get('base_stat'),
-                                               spatk=pokeStats[3].get('base_stat'),
-                                               spdef=pokeStats[4].get('base_stat'),
-                                               spd=pokeStats[5].get('base_stat'),
+    if(Pokemon.objects.all().count() == 0):
+        pokeListResponse = requests.get(pokeListUrl)
+        pokeListData = pokeListResponse.json()
+        # print(pokeListData.get("results"))
+        for i in pokeListData.get("results"):
+            pokeStatsUrl = i.get('url')
+            #print(pokeStatsUrl)
+            pokeStatsResponse = requests.get(pokeStatsUrl)
+            pokeStatsData = pokeStatsResponse.json()
+            #print(pokeStatsData)
+            pokeStats = pokeStatsData.get('stats')
+            #print(pokeStats)
+            pokeInstance = Pokemon.objects.create(
+                                                   name=pokeStatsData.get('name'), 
+                                                   # generation = 1,
+                                                   hp=pokeStats[0].get('base_stat'), 
+                                                   atk=pokeStats[1].get('base_stat'),
+                                                   dfn=pokeStats[2].get('base_stat'),
+                                                   spatk=pokeStats[3].get('base_stat'),
+                                                   spdef=pokeStats[4].get('base_stat'),
+                                                   spd=pokeStats[5].get('base_stat'),
 
-                                             )
-        for i in pokeStatsData.get('types'):
-            pokeType = Types.objects.filter(name__iexact = i.get("type").get("name"))
-            pokeInstance.types.add(pokeType[0])
-        pokeInstance.save()
-        print(pokeInstance.name)
-    return JsonResponse(pokeListData)
+                                                 )
+            for i in pokeStatsData.get('types'):
+                pokeType = Types.objects.filter(name__iexact = i.get("type").get("name"))
+                pokeInstance.types.add(pokeType[0])
+            pokeInstance.save()
+            print(pokeInstance.name)
+        return JsonResponse(pokeListData)
 
 def populateTypes():
     pokeTypeUrl = 'https://pokeapi.co/api/v2/type'
-    pokeTypeResponse = requests.get(pokeTypeUrl)
-    pokeTypeData = pokeTypeResponse.json()
-    for i in pokeTypeData.get('results'):
-        pokeInstance = Types.objects.create(name=i.get('name'))
-        pokeInstance.save()
-        print(pokeInstance.name)
+    if (Types.objects.all().count() == 0):
+        pokeTypeResponse = requests.get(pokeTypeUrl)
+        pokeTypeData = pokeTypeResponse.json()
+        for i in pokeTypeData.get('results'):
+            pokeInstance = Types.objects.create(name=i.get('name'))
+            pokeInstance.save()
+            print(pokeInstance.name)
                
 def pokedexView(request):
     if not Types.objects.all():

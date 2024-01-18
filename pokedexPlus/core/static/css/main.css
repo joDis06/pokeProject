@@ -1,12 +1,14 @@
 @font-face{
     font-family: "pkmnFont";
-    src: url('pokemon-gen3-battle.ttf');
+    src:
+        url('pokemon-gen3-battle.ttf');
 }
 
 
-*{
-    background-color: #dece95;
-    color: #c3b264;
+* {
+    background: #cbbfaf;
+    color: #4460a6;
+    font-family: 'pkmnFont', 'Gill Sans', 'Times New Roman';
 }
 
 .table{
@@ -26,9 +28,13 @@
 
 .header{
     padding: 10px 10px;
-    color: #000;
-    background-color: #fff;
-    position: fixed;
+    color: #4460a6;
+    background-color: #a393a4;
+    /* position: fixed; */
     top:0;
     width: 100%
+}
+
+h1{
+    margin: 0px
 }

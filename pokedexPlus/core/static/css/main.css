@@ -1,0 +1,34 @@
+@font-face{
+    font-family: "pkmnFont";
+    src: url('pokemon-gen3-battle.ttf');
+}
+
+
+*{
+    background-color: #dece95;
+    color: #c3b264;
+}
+
+.table{
+    border-style: solid;
+    border-color:#89cc5f;
+    border-radius: 0.25em;
+    border-width: 10px;
+}
+
+.table-container{
+    text-align: center;
+}
+
+.atkColor {
+    background-color: #ffd4b8;
+}
+
+.header{
+    padding: 10px 10px;
+    color: #000;
+    background-color: #fff;
+    position: fixed;
+    top:0;
+    width: 100%
+}

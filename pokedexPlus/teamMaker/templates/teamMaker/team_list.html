@@ -4,5 +4,13 @@
 <a href="{% url 'teamMaker:teamCreate' %}">New Team</a><br/><br/>
 {% for team in object_list %}
     <a href="{% url 'teamMaker:teamDetail' team.id %}">{{ team.id }}</a><br/>
+
+    
+
+    {% for key, value in team.items %}
+
+        <p>{{value}}</p>
+
+    {% endfor %}
 {% endfor %}
 {% endblock content %}

@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 
 from .models import Team
+from pokedex.models import Pokemon
 from .forms import TeamForm
 
 class TeamListView(ListView):

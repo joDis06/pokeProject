@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a href="{% url 'teamMaker:teamCreate' %}">New Team</a><br/><br/>
+{% for team in object_list %}
+    <a href="{% url 'teamMaker:teamDetail' team.id %}">{{ team.id }}</a><br/>
+{% endfor %}
+{% endblock content %}

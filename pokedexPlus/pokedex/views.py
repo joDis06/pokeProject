@@ -35,8 +35,12 @@ def populatePokemon():
                                                    spatk=pokeStats[3].get('base_stat'),
                                                    spdef=pokeStats[4].get('base_stat'),
                                                    spd=pokeStats[5].get('base_stat'),
-                                                   image=pokeStatsData.get('sprites').get('other').get('home').get('front_default')
+                                                   image=pokeStatsData['sprites']['other']['home']['front_default']
+                                                   
+                                                   
+                                                
                                                  )
+            print(pokeInstance.image)
             for i in pokeStatsData.get('types'):
                 pokeType = Types.objects.filter(name__iexact = i.get("type").get("name"))
                 pokeInstance.types.add(pokeType[0])
@@ -70,15 +74,3 @@ def pokedexView(request):
     # of the info
 
     return render(request, 'pokedex/pokedex.html', context={"pokemon": pokemon})
-
-
-# make detail view
-
-def pokeDetailView(request):
-    print("Hi!")
-
-    # have a button on pokedexview template that gives the id for the pokemon,
-    # then get data with https://pokeapi.co/api/v2/pokemon/[ID]
-    # put data into table thru context
-
-    return render(request, 'pokedex/pokeDetail.html')

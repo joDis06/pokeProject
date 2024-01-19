@@ -7,10 +7,10 @@ The website has the ability to store "teams" of up to 6 pokemon of your choosing
 
 Upon cloning, please set up your python environment using the provided requirements_env folder by typing "python -m venv env_3.11.5" and then pasting the following into the terminal:
 
-pip install --upgrade pip-tools pip setuptools wheel
-pip-compile --upgrade --generate-hashes --output-file requirements_env/main.txt requirements_env/main.in
-pip-compile --upgrade --generate-hashes --output-file requirements_env/dev.txt requirements_env/dev.in
-pip-sync requirements_env/main.txt requirements_env/dev.txt
+pip install --upgrade pip-tools pip setuptools wheel;
+pip-compile --upgrade --generate-hashes --output-file requirements_env/main.txt requirements_env/main.in;
+pip-compile --upgrade --generate-hashes --output-file requirements_env/dev.txt requirements_env/dev.in;
+pip-sync requirements_env/main.txt requirements_env/dev.txt;
 
 After this, please update your secrets.json file located in pokedexPlus/pokedexPlus/ with your database name, username, password, and host.
 

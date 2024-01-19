@@ -11,12 +11,12 @@
     font-family: 'pkmnFont', 'Gill Sans', 'Times New Roman';
 }
 
-.table{
+/* .table{
     border-style: solid;
     border-color:#89cc5f;
     border-radius: 0.25em;
     border-width: 10px;
-}
+} */
 
 .table-container{
     text-align: center;

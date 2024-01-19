@@ -2,7 +2,14 @@
 
 {% block content %}
 <a href="{% url 'teamMaker:teamList' %}">Team list</a><br/>
-{{object.id}} <br>
+{{object.id}} <br><br>
+{% for teamPKMN in object.teamPKMN.all %}
+&nbsp{{teamPKMN.name}}
+<br>
+<img src={{teamPKMN.image}} width="128px">
+<br>
+<br>
+{%endfor %}
 
 
 {% endblock content %}

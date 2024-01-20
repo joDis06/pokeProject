@@ -1,23 +1,24 @@
-{% extends "base.html" %}
+{% include "core/base.html" %}
 
 {% block content %}
-
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-
-<h2> Pokedex Page </h2>
+<div class="bg">
+<div id="bootstrap-override">
+<h2> Pokedex </h2>
 <table class="table">
     <th> Pokemon </th>
-    <th> Health </th>
-    <th> Attack </th>
-    <th> Defense </th>
-    <th> Special Attack </th>
-    <th> Special Defense </th>
-    <th> Speed </th>
+    <th class="table-danger"> Health </th>
+    <th style="background-color:#ffd4b8"> Attack </th>
+    <th class="table-warning"> Defense </th>
+    <th class="table-primary"> Special Attack </th>
+    <th class="table-success"> Special Defense </th>
+    <th class="table-info"> Speed </th>
 {% for item in pokemon %}
 <tr>
-    <td> <img src={{item.image}}> <br> {{item.name}} </td>
+    <td> 
+    {% if item.image != null %}
+    <img src={{item.image}} width=128>
+    {%endif%}
+    {{item.name}} </td>
     <td class="table-danger"> {{item.hp}} </td>
     <td style="background-color:#ffd4b8"> {{item.atk}} </td>
     <td class="table-warning"> {{item.dfn}} </td>
@@ -27,6 +28,5 @@
 
 </tr>
 {% endfor %}
-
-
+</div></div>
 {% endblock content %}

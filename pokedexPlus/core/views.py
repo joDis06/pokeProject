@@ -6,5 +6,5 @@ from django.http import HttpResponse
 
 
 def main(request):
-    template = loader.get_template('base.html')
+    template = loader.get_template('core/home.html')
     return HttpResponse(template.render())

@@ -1,6 +1,9 @@
-{% extends "base.html" %}
+{% include "core/base.html" %}
 
 {% block content %}
+<div class="bg">
+<div id="bootstrap-override">
+<h2> Team Maker </h2>
 <a href="{% url 'teamMaker:teamCreate' %}">New Team</a><br/><br/>
 {% for team in object_list %}
     <a href="{% url 'teamMaker:teamDetail' team.id %}">{{ team.id }}</a><br/>
@@ -13,4 +16,5 @@
 
     {% endfor %}
 {% endfor %}
+</div></div>
 {% endblock content %}

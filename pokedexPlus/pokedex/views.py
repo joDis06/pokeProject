@@ -18,7 +18,9 @@ def populatePokemon():
         pokeListResponse = requests.get(pokeListUrl)
         pokeListData = pokeListResponse.json()
         # print(pokeListData.get("results"))
+        counter=0
         for i in pokeListData.get("results"):
+            counter+= 1
             pokeStatsUrl = i.get('url')
             #print(pokeStatsUrl)
             pokeStatsResponse = requests.get(pokeStatsUrl)
@@ -27,6 +29,7 @@ def populatePokemon():
             pokeStats = pokeStatsData.get('stats')
             #print(pokeStats)
             pokeInstance = Pokemon.objects.create(
+                                                   id=counter,
                                                    name=pokeStatsData.get('name'), 
                                                    # generation = 1,
                                                    hp=pokeStats[0].get('base_stat'), 
@@ -53,8 +56,10 @@ def populateTypes():
     if (Types.objects.all().count() == 0):
         pokeTypeResponse = requests.get(pokeTypeUrl)
         pokeTypeData = pokeTypeResponse.json()
+        counter = 0
         for i in pokeTypeData.get('results'):
-            pokeInstance = Types.objects.create(name=i.get('name'))
+            counter += 1
+            pokeInstance = Types.objects.create(id=counter, name=i.get('name'))
             pokeInstance.save()
             print(pokeInstance.name)
             

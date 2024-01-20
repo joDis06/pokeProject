@@ -15,7 +15,7 @@ class Pokemon(models.Model):
     spdef = models.SmallIntegerField()
     spd = models.SmallIntegerField()
     types = models.ManyToManyField(Types)
-    image = models.CharField()
+    image = models.CharField(blank=True, null=True)
     
     def __str__(self):
         return self.name

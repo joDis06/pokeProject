@@ -1,0 +1,20 @@
+{% include "core/base.html" %}
+
+{% block content %}
+
+<table>
+    <tr>
+    {% for object in teams %}
+        <!-- {% for teamPKMN in object.teamPKMN.all %}
+            &nbsp{{teamPKMN.name}} <br>
+        {%endfor%} -->
+        <a href="../teamMaker/{{object.id}}">Team {{object.id}}</a>
+        <br><br>
+    {%endfor%}
+    </tr>
+</table>
+{% endblock content %}
+
+
+
+

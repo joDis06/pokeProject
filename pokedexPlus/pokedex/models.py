@@ -7,7 +7,6 @@ class Types(models.Model):
 
 class Pokemon(models.Model):
     name = models.CharField(max_length=50)
-    # generation = models.SmallIntegerField()
     hp = models.SmallIntegerField()
     atk = models.SmallIntegerField()
     dfn = models.SmallIntegerField()

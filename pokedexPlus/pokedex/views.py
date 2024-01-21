@@ -31,7 +31,6 @@ def populatePokemon():
             pokeInstance = Pokemon.objects.create(
                                                    id=counter,
                                                    name=pokeStatsData.get('name'), 
-                                                   # generation = 1,
                                                    hp=pokeStats[0].get('base_stat'), 
                                                    atk=pokeStats[1].get('base_stat'),
                                                    dfn=pokeStats[2].get('base_stat'),

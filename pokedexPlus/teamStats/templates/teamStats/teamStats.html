@@ -40,23 +40,24 @@
         
         
         function makeTeamTable(){
-            document.getElementById('comparisonTableGoesHere').innerHTML = `<table>
+            document.getElementById('comparisonTableGoesHere').innerHTML = `
+            <table>
                 <th> Team ${teamButton1} Pokemon </th>
-                <th class="table-danger"> Health </th>
-                <th style="background-color:#ffd4b8"> Attack </th>
-                <th class="table-warning"> Defense </th>
-                <th class="table-primary"> Special Attack </th>
-                <th class="table-success"> Special Defense </th>
-                <th class="table-info"> Speed </th>
+            
+                {% for teamPKMN in teams.1.teamPKMN.all %}
+                    &nbsp{{teamPKMN.name}}
+                    <br>
+                    <img src={{teamPKMN.image}} width="128px">
+                    <br>
+                    <br>
+                {%endfor%}
+            
+                
             </table> <table>
                 <th> Team ${teamButton2} Pokemon </th>
-                <th class="table-danger"> Health </th>
-                <th style="background-color:#ffd4b8"> Attack </th>
-                <th class="table-warning"> Defense </th>
-                <th class="table-primary"> Special Attack </th>
-                <th class="table-success"> Special Defense </th>
-                <th class="table-info"> Speed </th>
-            </table>`;
+            </table>
+            
+            {{teams}}`;
         }
 
         {% comment %} 

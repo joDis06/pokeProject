@@ -40,12 +40,14 @@ tr, td, th {
     font-size:2em;
 
 }
+
 #nav{
     border-bottom-right-radius:5px;
     border-bottom-left-radius:5px;
     background-color: #a393a4;
     transition: 250ms;
     text-align: center;
+    text-decoration: none;
 }
 
 #nav:hover{
@@ -77,4 +79,8 @@ h1{
     bottom: 0%;
     width: 50%;
     right:25%;
+}
+
+button{
+    background-color: #a393a4;
 }

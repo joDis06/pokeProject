@@ -2,18 +2,69 @@
 
 {% block content %}
 
-<table>
-    <tr>
-    {% for object in teams %}
-        <!-- {% for teamPKMN in object.teamPKMN.all %}
-            &nbsp{{teamPKMN.name}} <br>
-        {%endfor%} -->
-        <a href="../teamMaker/{{object.id}}">Team {{object.id}}</a>
-        <br><br>
-    {%endfor%}
-    </tr>
-</table>
+
+<div id="bootstrapOverride">
+    <table>
+        <tr>
+        {% for object in teams %}
+             <!-- {% for teamPKMN in object.teamPKMN.all %}
+                &nbsp{{teamPKMN.name}} <br>
+            {%endfor%} -->
+            <a href="../teamMaker/{{object.id}}">Team {{object.id}}</a><br>
+            <button type="button" class="teamButton" value="{{object.id}}">Compare this team</button> 
+            <br><br>
+        {%endfor%}
+        </tr>
+    </table> <br> <br> <br>
+    <div id="comparisonTableGoesHere"></div>
+
+</div>
 {% endblock content %}
+
+<script>
+    {%block js%}    
+        let teamButton1 = "";
+        let teamButton2 = "";
+
+        document.querySelectorAll(".teamButton").forEach(link => link.addEventListener('click', function() {
+            if(teamButton1 == "") {
+                teamButton1 = link.value;
+            } else if (teamButton2 == ""){
+                teamButton2 = link.value;
+                console.log(teamButton1 + " " + teamButton2);
+                makeTeamTable();
+            } else {
+                console.log("GO BACK GO BACK");
+            }
+        }))
+        
+        
+        function makeTeamTable(){
+            document.getElementById('comparisonTableGoesHere').innerHTML = `<table>
+                <th> Team 1 Pokemon </th>
+                <th class="table-danger"> Health </th>
+                <th style="background-color:#ffd4b8"> Attack </th>
+                <th class="table-warning"> Defense </th>
+                <th class="table-primary"> Special Attack </th>
+                <th class="table-success"> Special Defense </th>
+                <th class="table-info"> Speed </th>
+            </table> <table>
+                <th> Team 2 Pokemon </th>
+                <th class="table-danger"> Health </th>
+                <th style="background-color:#ffd4b8"> Attack </th>
+                <th class="table-warning"> Defense </th>
+                <th class="table-primary"> Special Attack </th>
+                <th class="table-success"> Special Defense </th>
+                <th class="table-info"> Speed </th>
+            </table>`;
+        }
+
+        {% comment %} 
+            So: Problem I realized! How exactly do I get all the API stuff into the JS...?
+        {% endcomment %}
+    {%endblock js%}
+</script>
+
 
 
 

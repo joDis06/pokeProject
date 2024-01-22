@@ -2,16 +2,17 @@
 
 {% block content %}
 <div class="bg">
-<div id="bootstrap-override">
-<a href="{% url 'teamMaker:teamList' %}">Team list</a><br/>
-team {{object.id}} <br><br>
-{% for teamPKMN in object.teamPKMN.all %}
-&nbsp{{teamPKMN.name}}
-<br>
-<img src={{teamPKMN.image}} width="128px">
-<br>
-<br>
-{%endfor %}
-</div></div>
+    <div id="bootstrap-override">
+        <a href="{% url 'teamMaker:teamList' %}">Team list</a><br/>
+        team {{object.id}} <br><br>
+        {% for teamPKMN in object.teamPKMN.all %}
+            &nbsp{{teamPKMN.name}}
+            <br>
+            <img src={{teamPKMN.image}} width="128px">
+            <br>
+            <br>
+        {%endfor%}
+    </div>
+</div>
 
 {% endblock content %}

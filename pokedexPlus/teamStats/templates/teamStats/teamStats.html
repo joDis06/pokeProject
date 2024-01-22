@@ -41,22 +41,30 @@
         
         function makeTeamTable(){
             document.getElementById('comparisonTableGoesHere').innerHTML = `
+
             <table>
-                <th> Team ${teamButton1} Pokemon </th>
+                <th> Team ${teamButton1} Pokemon </th>  
             
-                {% for teamPKMN in teams.1.teamPKMN.all %}
-                    &nbsp{{teamPKMN.name}}
-                    <br>
-                    <img src={{teamPKMN.image}} width="128px">
-                    <br>
-                    <br>
+                
+                
+                
+                {% for team in teams.all %}
+                    <p> {{team.id}}, ${teamButton1} </p>
+                    {%if team.id == '${teamButton1}'%}
+                        <p> if statement works </p>
+                        {%for teamPKMN in team.teamPKMN.all%}
+                            <th>{{teamPKMN.name}}
+                                <br>
+                                <img src={{teamPKMN.image}} width="128px">
+                            <th>
+                        {%endfor%}
+                    {%endif%}
                 {%endfor%}
             
                 
             </table> <table>
                 <th> Team ${teamButton2} Pokemon </th>
             </table>
-            
             {{teams}}`;
         }
 

@@ -33,15 +33,15 @@
                 teamButton2 = link.value;
                 console.log(teamButton1 + " " + teamButton2);
                 makeTeamTable();
+                teamButton1 = ""; teamButton2 = "";
             } else {
-                console.log("GO BACK GO BACK");
             }
         }))
         
         
         function makeTeamTable(){
             document.getElementById('comparisonTableGoesHere').innerHTML = `<table>
-                <th> Team 1 Pokemon </th>
+                <th> Team ${teamButton1} Pokemon </th>
                 <th class="table-danger"> Health </th>
                 <th style="background-color:#ffd4b8"> Attack </th>
                 <th class="table-warning"> Defense </th>
@@ -49,7 +49,7 @@
                 <th class="table-success"> Special Defense </th>
                 <th class="table-info"> Speed </th>
             </table> <table>
-                <th> Team 2 Pokemon </th>
+                <th> Team ${teamButton2} Pokemon </th>
                 <th class="table-danger"> Health </th>
                 <th style="background-color:#ffd4b8"> Attack </th>
                 <th class="table-warning"> Defense </th>

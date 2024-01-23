@@ -23,51 +23,51 @@
 
 <script>
     {%block js%}    
+        var teamsJSON = JSON.parse('{{ teamsJSON | safe }}');
+        var pokemonJSON = JSON.parse('{{ pkmnJSON | safe }}')
         let teamButton1 = "";
         let teamButton2 = "";
+
+        console.log(teamsJSON);
+
 
         document.querySelectorAll(".teamButton").forEach(link => link.addEventListener('click', function() {
             if(teamButton1 == "") {
                 teamButton1 = link.value;
-            } else if (teamButton2 == ""){
+            } else{
                 teamButton2 = link.value;
                 console.log(teamButton1 + " " + teamButton2);
                 makeTeamTable();
                 teamButton1 = ""; teamButton2 = "";
-            } else {
-            }
+            } 
         }))
         
         
         function makeTeamTable(){
-            document.getElementById('comparisonTableGoesHere').innerHTML = `
+            toTable = `<table>
+                <th> Team ${teamsJSON[teamButton1 - 1]['pk']} Pokemon </th>`
 
-            <table>
-                <th> Team ${teamButton1} Pokemon </th>  
-            
-                
-                
-                
-                {% for team in teams.all %}
-                    <p> {{team.id}}, ${teamButton1} </p>
-                    {%if team.id == '${teamButton1}'%}
-                        <p> if statement works </p>
-                        {%for teamPKMN in team.teamPKMN.all%}
-                            <th>{{teamPKMN.name}}
-                                <br>
-                                <img src={{teamPKMN.image}} width="128px">
-                            <th>
-                        {%endfor%}
-                    {%endif%}
-                {%endfor%}
-            
-                
-            </table> <table>
-                <th> Team ${teamButton2} Pokemon </th>
-            </table>
-            {{teams}}`;
+            toTable += addToTable(teamButton1);
+            toTable += `</table> <table> <th> Team ${teamsJSON[teamButton2 - 1]['pk']} Pokemon </th>`
+            toTable += addToTable(teamButton2) + `</table>`;
+
+            document.getElementById('comparisonTableGoesHere').innerHTML = toTable   
         }
 
+
+        function addToTable(teamButtonParam){
+            let toTable = "";
+            for(let i = 0; i < teamsJSON[teamButtonParam - 1]["fields"]['teamPKMN'].length; i++) {
+                let pkmnID = teamsJSON[teamButtonParam - 1]["fields"]['teamPKMN'][i] - 1;
+    
+                toTable += `
+                     <th> 
+                        ${pokemonJSON[pkmnID]["fields"]["name"]} <br>
+                        <img src = ${pokemonJSON[pkmnID]["fields"]["image"]} width="128px"
+                     </th>`
+            }
+            return toTable
+        }
         {% comment %} 
             So: Problem I realized! How exactly do I get all the API stuff into the JS...?
         {% endcomment %}

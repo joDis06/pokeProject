@@ -1,7 +1,15 @@
-1/08/24: Started work on design doc
-1/09/24: Did database diagrams and website mockup
-1/10/24: Started work on project, set up environment and database with required packages. Polished database drawing using draw.io
-1/11/24: Finished models, polished website mockup.
-1/16/24: Finished API, database work.
+1/08/24: Started work on design doc (together)
+1/09/24: Did database diagrams and website mockup (together)
+1/10/24: Polished database drawing using draw.io (Phoebe), polished website mockup (Aiza), started django project / requirements (Jo)
+1/11/24: Started work on project, set up environment and database with required packages (Jo & Aiza).
+1/12/24: Finished models, finalized design doc (together)
+1/14/24: Worked on API, database work (Aiza & Jo)
+1/15/24: Updated views/templates (Jo)
+1/16/24: Made it so data loaded from API on first load (Phoebe), Pokemon types interface (Aiza), more API work (Jo).
+1/17/24: Pokedex list view functional, needs CSS (Jo), finalized API / templates (together)
+1/18/24: CSS (Phoebe), Bug fixes (together)
+1/19/24: Broke literally everything with bootstrap and CSS (Phoebe), fixed literally everything (Jo & Aiza) :D
+1/20/24: Finalized CSS, added limit to number of selectable pokemon for a team (Aiza)
+1/21/24: TeamStats skeleton (Jo), TeamStats meat (Phoebe)
 
 - Comment : go by commits later figure it out sometime (later)

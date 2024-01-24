@@ -11,5 +11,3 @@
 1/19/24: Broke literally everything with bootstrap and CSS (Phoebe), fixed literally everything (Jo & Aiza) :D
 1/20/24: Finalized CSS, added limit to number of selectable pokemon for a team (Aiza)
 1/21/24: TeamStats skeleton (Jo), TeamStats meat (Phoebe)
-
-- Comment : go by commits later figure it out sometime (later)
